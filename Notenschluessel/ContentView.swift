@@ -59,6 +59,8 @@ class TF: ObservableObject {
             else{
                 self.lst = lst_FS
             }
+            
+            
             lst_bis[0] = String(m)
             
             tmp = (m * self.lst[1]) / 100
@@ -110,6 +112,10 @@ struct ContentView: View {
     var body: some View {
         
         VStack(){
+            Text("Berechnung von Notenschlüsseln")
+                .fontWeight(.bold)
+                .font(.system(.largeTitle, design: .rounded))
+                
             HStack(alignment: .center){
                 Text(" Auswahl: ")
                     .font(.headline)
@@ -167,14 +173,17 @@ struct ContentView: View {
                         .font(.headline)
                     Text("  ")
                     TextField("von", text: $tf.lst_bis[idx])
+                        .disabled(true)
                     Text("bis")
                         .font(.headline)
                     TextField("von", text: $tf.lst_von[idx])
+                        .disabled(true)
                 
                     
                     }//foreach
 
                 }//lazygrid
+            
             }//vstack
         .frame(
           minWidth: 0,

@@ -104,10 +104,10 @@
 			};
 			buildConfigurationList = E34242CD27300F0B00DEDEC0 /* Build configuration list for PBXProject "Notenschluessel" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = de;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				de,
 				Base,
 			);
 			mainGroup = E34242C927300F0B00DEDEC0;
