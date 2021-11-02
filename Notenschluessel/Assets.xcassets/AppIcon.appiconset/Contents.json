@@ -1,91 +1,109 @@
 {
   "images" : [
     {
+      "filename" : "Notenschlüssel_40-2.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "Notenschlüssel_60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "Notenschlüssel_58-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "Notenschlüssel_87.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "Notenschlüssel_80-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "Notenschlüssel_120-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
+      "filename" : "Notenschlüssel_120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "Notenschlüssel_180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
+      "filename" : "Notenschlüssel_20.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
+      "filename" : "Notenschlüssel_40-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "Notenschlüssel_29.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
+      "filename" : "Notenschlüssel_58.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "Notenschlüssel_40.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
+      "filename" : "Notenschlüssel_80.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "Notenschlüssel_76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
+      "filename" : "Notenschlüssel_152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "Notenschlüssel_167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "Notenschlüssel_1024.001.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

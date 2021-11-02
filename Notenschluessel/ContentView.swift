@@ -7,9 +7,7 @@
 
 import SwiftUI
 
- 
-// FS   20, 40, 55, 70, 85, 100
-// IHK  29, 49, 66, 80, 91, 100
+
 let lst_IHK = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
 let lst_FS = [100.0, 85.0, 70.0, 55.0, 40.0, 20.0]
 
@@ -188,8 +186,6 @@ struct ContentView: View {
         }//body
     }
     
-
-
 
 
 struct ContentView_Previews: PreviewProvider {
