@@ -190,11 +190,15 @@ struct ContentView: View {
                     }//foreach
 
                 }//lazygrid
+            Spacer()
+
+            Image(systemName: "graduationcap")
+                .font(.system(size: 70.0))
             
             }//vstack
         .frame(
           minWidth: 0,
-          maxWidth: 800,
+          maxWidth: 500,
           minHeight: 0,
           maxHeight: 500,
           alignment: .topLeading
@@ -207,5 +211,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+.previewInterfaceOrientation(.portrait)
     }
 }
