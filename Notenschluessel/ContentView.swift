@@ -10,7 +10,7 @@ import SwiftUI
 
 let lst_IHK = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
 let lst_FS = [100.0, 85.0, 70.0, 55.0, 40.0, 20.0]
-
+let offset = 6
 
 func contenChange(_ tag: Int) {
     print("content tag: \(tag)")
@@ -30,7 +30,7 @@ class TF: ObservableObject {
             self.update()
             }
     }
-    @Published var maxp = "100" {
+    @Published var maxp = 100  - 6{
         didSet {
             self.update()
             }
@@ -50,7 +50,8 @@ class TF: ObservableObject {
     func update(){
         print("update")
         
-        if let m = Double(maxp){
+        //if let m = Double(maxp){
+            let m = Double(maxp + offset)
             var tmp = 0.0
             
             if (self.selection == 1){
@@ -88,7 +89,7 @@ class TF: ObservableObject {
             
             lst_von[4] = String(format: "%.1f", self.mround(tmp + 0.5, step: 0.5))
             
-        }
+        //}
         
     }
     
@@ -134,7 +135,13 @@ struct ContentView: View {
                 Text("max. Punkte: ")
                     .font(.headline)
                     .multilineTextAlignment(.trailing)
-                TextField("max", text: $tf.maxp)
+                Picker("Number of people", selection: $tf.maxp) {
+                    ForEach(6 ..< 201) {
+                        Text("\($0)")
+                        }
+
+                    }
+                /*TextField("max", text: $tf.maxp)
                     .keyboardType(.numberPad)
                     .focused($tfIsFocused)
                     .keyboardType(.numberPad)
@@ -159,7 +166,7 @@ struct ContentView: View {
                 Button("OK") {
                     tfIsFocused = false
                     }
-                .disabled(tf.isValid == false)
+                .disabled(tf.isValid == false)*/
                 
 
             }//hstack
