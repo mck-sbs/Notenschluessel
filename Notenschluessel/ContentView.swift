@@ -173,28 +173,7 @@ struct ContentView: View {
 
             
             }//vstack
-            .toolbar{
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    infoBtn.toggle()
-                },  label: {Image(systemName: "info.circle" )})
-                }
 
-            }
-            .sheet(isPresented: $infoBtn, content: {
-                VStack{
-                    Text("Hinweise")
-                    .fontWeight(.bold)
-                    .font(.system(.largeTitle, design: .rounded))
-                    Spacer()
-                    Text("Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDies ist eine Open-Source App. Wenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\nInormationen zur App finden Sie auf der Homepage.\n\n")
-                        .font(Font.subheadline)
-                    Link("Link zur Homepage", destination: URL(string: "https://github.com/mck-sbs/Notenschluessel")!)
-                        .foregroundColor(.blue)
-                    Spacer()
-                }
-
-            })
             .frame(
               minWidth: 0,
               maxWidth: 500,
@@ -202,9 +181,37 @@ struct ContentView: View {
               maxHeight: 500,
               alignment: .topLeading
             )
+            .toolbar{
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    infoBtn.toggle()
+                },  label: {
+                    Image(systemName: "info.circle" )
+                        .resizable()
+                        .frame(width: 30.0, height: 30.0)
+                })
+                .frame(width: 100, height: 100)
+                }
+
+            }
 
         }//navigationview
         .navigationViewStyle(StackNavigationViewStyle())
+        .sheet(isPresented: $infoBtn, content: {
+            VStack{
+                Text("Hinweise")
+                .fontWeight(.bold)
+                .font(.system(.largeTitle, design: .rounded))
+                Spacer()
+                Text("Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDies ist eine Open-Source App. Wenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\nInormationen zur App finden Sie auf der Homepage.\n\n")
+                    .font(Font.subheadline)
+                Link("Link zur Homepage", destination: URL(string: "https://github.com/mck-sbs/Notenschluessel")!)
+                    .foregroundColor(.blue)
+                Spacer()
+            }
+
+        })
+
 
 
         /*.sheet(isPresented: $infoBtn, content: {
