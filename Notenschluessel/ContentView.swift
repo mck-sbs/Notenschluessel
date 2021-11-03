@@ -180,7 +180,6 @@ struct ContentView: View {
                 },  label: {Image(systemName: "info.circle" )})
                 }
 
-
             }
             .sheet(isPresented: $infoBtn, content: {
                 VStack{
@@ -188,7 +187,7 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .font(.system(.largeTitle, design: .rounded))
                     Spacer()
-                    Text("Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDies ist eine Open-Source App. Inormationen zur App finden Sie auf der Homepage.\n\nWenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\n")
+                    Text("Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDies ist eine Open-Source App. Wenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\nInormationen zur App finden Sie auf der Homepage.\n\n")
                         .font(Font.subheadline)
                     Link("Link zur Homepage", destination: URL(string: "https://github.com/mck-sbs/Notenschluessel")!)
                         .foregroundColor(.blue)
