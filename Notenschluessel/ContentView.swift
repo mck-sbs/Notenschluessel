@@ -104,7 +104,7 @@ class TF: ObservableObject {
 struct ContentView: View {
     
     @ObservedObject var tf = TF()
-    @FocusState private var tfIsFocused: Bool
+    @State var infoBtn = false
     
     private var gridItems = [
         GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible(), alignment: .leading), GridItem(.flexible())]
@@ -112,7 +112,9 @@ struct ContentView: View {
 
     var body: some View {
         
+        NavigationView {
         VStack(){
+
             Text("Berechnung von Notenschlüsseln")
                 .fontWeight(.bold)
                 .font(.system(.largeTitle, design: .rounded))
@@ -141,33 +143,6 @@ struct ContentView: View {
                         }
 
                     }
-                /*TextField("max", text: $tf.maxp)
-                    .keyboardType(.numberPad)
-                    .focused($tfIsFocused)
-                    .keyboardType(.numberPad)
-                    .frame(width: 100).border(tf.isValid ? Color.green : Color.red)
-                    .onChange(of: tf.maxp, perform: { (value) in
-                        if let val = Int(value){
-                            if (val >= 6)
-                            {
-                                tf.isValid = true
-                                contenChange(val)
-                            }
-                            else{
-                                tf.isValid = false
-                            }
-
-                        }
-                        else{
-                            tf.isValid = false
-                        }
-                        
-                    })
-                Button("OK") {
-                    tfIsFocused = false
-                    }
-                .disabled(tf.isValid == false)*/
-                
 
             }//hstack
 
@@ -190,19 +165,56 @@ struct ContentView: View {
                     }//foreach
 
                 }//lazygrid
-            Spacer()
+            /*Spacer()
 
             Image(systemName: "graduationcap")
-                .font(.system(size: 70.0))
+                .font(.system(size: 70.0))*/
+            //Spacer()
+
             
             }//vstack
-        .frame(
-          minWidth: 0,
-          maxWidth: 500,
-          minHeight: 0,
-          maxHeight: 500,
-          alignment: .topLeading
-        )
+            .toolbar{
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    infoBtn.toggle()
+                },  label: {Image(systemName: "info.circle" )})
+                }
+
+
+            }
+            .sheet(isPresented: $infoBtn, content: {
+                VStack{
+                    Text("Hinweise")
+                    .fontWeight(.bold)
+                    .font(.system(.largeTitle, design: .rounded))
+                    Spacer()
+                    Text("Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDies ist eine Open-Source App. Inormationen zur App finden Sie auf der Homepage.\n\nWenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\n")
+                        .font(Font.subheadline)
+                    Link("Link zur Homepage", destination: URL(string: "https://github.com/mck-sbs/Notenschluessel")!)
+                        .foregroundColor(.blue)
+                    Spacer()
+                }
+
+            })
+            .frame(
+              minWidth: 0,
+              maxWidth: 500,
+              minHeight: 0,
+              maxHeight: 500,
+              alignment: .topLeading
+            )
+
+        }//navigationview
+        .navigationViewStyle(StackNavigationViewStyle())
+
+
+        /*.sheet(isPresented: $infoBtn, content: {
+            ZStack{
+                Text("Hallo")
+            }
+
+        })*/
+
         }//body
     }
     
@@ -210,7 +222,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-.previewInterfaceOrientation(.portrait)
+        if #available(iOS 15.0, *) {
+            ContentView()
+                .previewInterfaceOrientation(.portrait)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
