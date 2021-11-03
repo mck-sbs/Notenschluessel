@@ -1,5 +1,5 @@
 # Notenschlüssel
-Einfacher Rechner für Notenschlüssel
+Einfacher iOS Rechner für Notenschlüssel
 
 # IHK (Bayern)
 - Note 6 bis 29 %
