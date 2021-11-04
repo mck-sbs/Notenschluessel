@@ -39,7 +39,7 @@ class TF: ObservableObject {
         lst_NS5 = UserDefaults.standard.object(forKey: "NS-1") as? [Double] ?? lst_NS5
         
 
-        noten_dict = ["IHK": self.lst_IHK, "FS": self.lst_FS, "NS-1": self.lst_NS1, "NS-2": self.lst_NS2, "NS-3": self.lst_NS3, "NS-4": self.lst_NS4, "NS-5": self.lst_NS5]
+        noten_dict = ["*IHK*": self.lst_IHK, "*FS*": self.lst_FS, "NS-1": self.lst_NS1, "NS-2": self.lst_NS2, "NS-3": self.lst_NS3, "NS-4": self.lst_NS4, "NS-5": self.lst_NS5]
         
     }
 
@@ -73,7 +73,7 @@ class TF: ObservableObject {
     }
     
     // 1 -> IHK, 2 -> FS
-    @Published var selection = "IHK" {
+    @Published var selection = "*IHK*" {
         didSet {
                 self.update()
             }
@@ -104,7 +104,7 @@ class TF: ObservableObject {
             
             self.lst = self.noten_dict[self.selection] ?? lst_IHK
             
-            if ( (selection == "IHK") ||  (selection == "FS") ){
+            if ( (selection == "*IHK*") ||  (selection == "*FS*") ){
                 editable = false
             }
             else{
@@ -237,7 +237,7 @@ struct ContentView: View {
             print("ContentView appeared!")
             
             if(!tf.isValid){
-                tf.selection = "IHK"
+                tf.selection = "*IHK*"
                 tf.lst = tf.lst_IHK
             }
 

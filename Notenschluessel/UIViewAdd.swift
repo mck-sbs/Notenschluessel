@@ -108,7 +108,7 @@ struct UIViewAdd: View {
                 
                 Button(action: {
                     
-                    if((tf.selection != "IHK") && (tf.selection != "FS"))
+                    if((tf.selection != "*IHK*") && (tf.selection != "*FS*"))
                     {
                         tf.noten_dict[tf.selection] = tf.lst
                         tf.update()
