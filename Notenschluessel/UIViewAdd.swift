@@ -13,6 +13,7 @@ struct UIViewAdd: View {
         GridItem(.flexible(), spacing: 20), GridItem(.flexible())]
     
     @EnvironmentObject var tf : TF
+    @State var showsAlert = false
     
 
     var body: some View {
@@ -114,6 +115,7 @@ struct UIViewAdd: View {
                         
                         let defaults = UserDefaults.standard
                         defaults.set(tf.lst, forKey: tf.selection)
+                        showsAlert.toggle()
                         
                     }
                     
@@ -121,6 +123,9 @@ struct UIViewAdd: View {
                     Text("Speichern")
                 }
                 .disabled(!tf.editable || !tf.isValid)
+                .alert(isPresented: $showsAlert) {
+                            Alert(title: Text("Liste aktualisiert"))
+                        }
             }//hstack
 
         }//v2
