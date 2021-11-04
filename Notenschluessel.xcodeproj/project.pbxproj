@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E32F346627339C870066DFF0 /* UIViewAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32F346527339C870066DFF0 /* UIViewAdd.swift */; };
 		E34242D627300F0B00DEDEC0 /* NotenschluesselApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34242D527300F0B00DEDEC0 /* NotenschluesselApp.swift */; };
 		E34242D827300F0B00DEDEC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34242D727300F0B00DEDEC0 /* ContentView.swift */; };
 		E34242DA27300F0C00DEDEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E34242D927300F0C00DEDEC0 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E32F346527339C870066DFF0 /* UIViewAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAdd.swift; sourceTree = "<group>"; };
 		E34242D227300F0B00DEDEC0 /* Notenschlüssel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Notenschlüssel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E34242D527300F0B00DEDEC0 /* NotenschluesselApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotenschluesselApp.swift; sourceTree = "<group>"; };
 		E34242D727300F0B00DEDEC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				E34242D527300F0B00DEDEC0 /* NotenschluesselApp.swift */,
 				E34242D727300F0B00DEDEC0 /* ContentView.swift */,
+				E32F346527339C870066DFF0 /* UIViewAdd.swift */,
 				E34242D927300F0C00DEDEC0 /* Assets.xcassets */,
 				E34242DB27300F0C00DEDEC0 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32F346627339C870066DFF0 /* UIViewAdd.swift in Sources */,
 				E34242D827300F0B00DEDEC0 /* ContentView.swift in Sources */,
 				E34242D627300F0B00DEDEC0 /* NotenschluesselApp.swift in Sources */,
 			);

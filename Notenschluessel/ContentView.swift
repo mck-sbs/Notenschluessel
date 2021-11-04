@@ -8,29 +8,77 @@
 import SwiftUI
 
 
-let lst_IHK = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
-let lst_FS = [100.0, 85.0, 70.0, 55.0, 40.0, 20.0]
 let offset = 6
+
+
 
 func contenChange(_ tag: Int) {
     print("content tag: \(tag)")
 }
 
+
 class TF: ObservableObject {
-    var lst = lst_IHK
+    let lst_IHK = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
+    let lst_FS = [100.0, 85.0, 70.0, 55.0, 40.0, 20.0]
+
+    var lst_NS1 = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
+    var lst_NS2 = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
+    var lst_NS3 = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
+    var lst_NS4 = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
+    var lst_NS5 = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0]
+    
+    
+    var noten_dict: [String: Array<Double>]
+    
+    init(){
+        
+        lst_NS1 = UserDefaults.standard.object(forKey: "NS-1") as? [Double] ?? lst_NS1
+        lst_NS2 = UserDefaults.standard.object(forKey: "NS-1") as? [Double] ?? lst_NS2
+        lst_NS3 = UserDefaults.standard.object(forKey: "NS-1") as? [Double] ?? lst_NS3
+        lst_NS4 = UserDefaults.standard.object(forKey: "NS-1") as? [Double] ?? lst_NS4
+        lst_NS5 = UserDefaults.standard.object(forKey: "NS-1") as? [Double] ?? lst_NS5
+        
+
+        noten_dict = ["IHK": self.lst_IHK, "FS": self.lst_FS, "NS-1": self.lst_NS1, "NS-2": self.lst_NS2, "NS-3": self.lst_NS3, "NS-4": self.lst_NS4, "NS-5": self.lst_NS5]
+        
+    }
+
+
     
     @Published var isValid = true {
         didSet {
 
             }
     }
-    // 1 -> IHK, 2 -> FS
-    @Published var selection = 1 {
+    
+    // hanlder, IHK zuerst
+    @Published var lst = [100.0, 91.0, 80.0, 66.0, 49.0, 29.0] {
         didSet {
-            self.update()
+            self.isValid = true
+            for i in stride(from: 4, to: 0, by: -1) {
+                if( self.lst[i] <= self.lst[i+1] )
+                {
+                    self.isValid = false
+                }
+            }
+        }
+            
+    }
+    
+    
+    @Published var editable = false {
+        didSet {
+
             }
     }
-    @Published var maxp = 100  - 6{
+    
+    // 1 -> IHK, 2 -> FS
+    @Published var selection = "IHK" {
+        didSet {
+                self.update()
+            }
+    }
+    @Published var maxp = 100  - offset{
         didSet {
             self.update()
             }
@@ -54,13 +102,14 @@ class TF: ObservableObject {
             let m = Double(maxp + offset)
             var tmp = 0.0
             
-            if (self.selection == 1){
-                self.lst = lst_IHK
+            self.lst = self.noten_dict[self.selection] ?? lst_IHK
+            
+            if ( (selection == "IHK") ||  (selection == "FS") ){
+                editable = false
             }
             else{
-                self.lst = lst_FS
+                editable = true
             }
-            
             
             lst_bis[0] = String(m)
             
@@ -89,6 +138,7 @@ class TF: ObservableObject {
             
             lst_von[4] = String(format: "%.1f", self.mround(tmp + 0.5, step: 0.5))
             
+        
         //}
         
     }
@@ -115,19 +165,20 @@ struct ContentView: View {
         NavigationView {
         VStack(){
 
-            Text("Berechnung von Notenschlüsseln")
+            /*Text("Berechnung von Punkteschlüsseln")
                 .fontWeight(.bold)
-                .font(.system(.largeTitle, design: .rounded))
+                .font(.system(.largeTitle, design: .rounded))*/
                 
             HStack(alignment: .center){
-                Text(" Auswahl: ")
+                Text(" Notenschlüssel: ")
                     .font(.headline)
                     .multilineTextAlignment(.trailing)
                 Picker(selection: $tf.selection, label: Text("Schlüssel")) {
-                    Text("IHK").tag(1)
-                    Text("FS").tag(2)
+                    ForEach(tf.noten_dict.keys.sorted(), id: \.self) { key in
+                        Text(key).tag(key)
+                    }
                 }.onChange(of: tf.selection, perform: { (value) in
-                    contenChange(value)
+                    //contenChange(value)
                 })
             }//vstack
             
@@ -169,10 +220,28 @@ struct ContentView: View {
 
             Image(systemName: "graduationcap")
                 .font(.system(size: 70.0))*/
-            //Spacer()
-
+            Spacer()
+            
+            //Test
+            VStack(alignment:.leading){
+                NavigationLink(destination: UIViewAdd().environmentObject(tf)) {
+                    Image(systemName: "gear.circle.fill" )
+                            Text("Notenschlüssel einstellen")
+                        }
+                    .navigationTitle("Punkteschlüssel")
+            }
+            //Test
             
             }//vstack
+        .onAppear {
+            print("ContentView appeared!")
+            
+            if(!tf.isValid){
+                tf.selection = "IHK"
+                tf.lst = tf.lst_IHK
+            }
+
+        }
 
             .frame(
               minWidth: 0,
@@ -195,6 +264,7 @@ struct ContentView: View {
 
             }
 
+
         }//navigationview
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $infoBtn, content: {
@@ -203,27 +273,20 @@ struct ContentView: View {
                 .fontWeight(.bold)
                 .font(.system(.largeTitle, design: .rounded))
                 Spacer()
-                Text("Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDies ist eine Open-Source App. Wenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\nInormationen zur App finden Sie auf der Homepage.\n\n")
+                Text("Dies ist eine Open-Source App. Es werden keinerlei Benutzerdaten gesammelt oder ausgewertet.\n\nDie Notenschlüssel NS-1 bis NS-5 können individuell eingestellt werden. Wenn Sie weitere Notenschlüssel vorschlagen wollen, schreiben Sie eine Mail an notenschluessel@sbs-herzogenaurach.de\n\nInormationen zur App finden Sie auf der Homepage.\n\n")
                     .font(Font.subheadline)
                 Link("Link zur Homepage", destination: URL(string: "https://github.com/mck-sbs/Notenschluessel")!)
                     .foregroundColor(.blue)
                 Spacer()
             }
 
-        })
-
-
-
-        /*.sheet(isPresented: $infoBtn, content: {
-            ZStack{
-                Text("Hallo")
-            }
-
-        })*/
+            })
 
         }//body
+
+
     }
-    
+
 
 
 struct ContentView_Previews: PreviewProvider {
