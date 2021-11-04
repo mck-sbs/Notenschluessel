@@ -124,7 +124,7 @@ struct UIViewAdd: View {
                 }
                 .disabled(!tf.editable || !tf.isValid)
                 .alert(isPresented: $showsAlert) {
-                            Alert(title: Text("Liste aktualisiert"))
+                            Alert(title: Text("\(tf.selection) aktualisiert"))
                         }
             }//hstack
 
